@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDistanceToNow, format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import SidebarWrap from "@/components/sidebar/sidebar-wrap";
-import { SignedIn } from "@daveyplate/better-auth-ui";
+import { RedirectToSignIn, SignedIn } from "@daveyplate/better-auth-ui";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -26,6 +26,10 @@ export default async function DashboardPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
+  if (!session?.user.id) {
+    return <RedirectToSignIn />;
+  }
 
   // Check if user is admin or developer
   const isAuthorized = session?.user && ["admin", "developer"].includes(session.user.role as string);

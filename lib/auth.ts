@@ -4,20 +4,14 @@ import { prisma } from "./prisma";
 import { sendEmail } from "./email/email";
 import {
   openAPI,
-  oneTap,
   bearer,
-  multiSession,
   admin,
-  username,
 } from "better-auth/plugins";
 import {
   emailVerificationTemplate,
-  orgInvitationTemplate,
   resetPasswordTemplate,
 } from "./email/templates";
 import { saasMeta } from "./appMeta/meta";
-import { apiKey } from "better-auth/plugins"
-import { organization } from "better-auth/plugins"
 
 
 export const auth = betterAuth({
