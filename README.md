@@ -10,7 +10,7 @@ Before you begin, ensure you have the following installed:
 - **pnpm:** (Version >= 8) If you don't have pnpm, install it using npm: `npm install -g pnpm`
 - **Prisma CLI:** Generally installed with `pnpm install`, but if you encounter issues, refer to the Prisma documentation.
 - **Better Auth CLI:** Generally installed with `@better-auth/cli`, but if you encounter issues, refer to the Better Auth documentation.
-- **Database:** (e.g., PostgreSQL, MySQL, SQLite) Ensure you have a database installed and running, and that you have the connection URL available.
+- **Database:** (Mongodb) Ensure you have a database installed and running, and that you have the connection URL available.
 
 ## Installation and Setup
 
@@ -19,8 +19,8 @@ Follow these steps to get the project up and running:
 1.  **Clone the repository:**
 
     ```bash
-    git clone <your_repository_url>
-    cd <your_project_directory>
+    git clone https://github.com/iqbalexperience/FeatureLoop.git
+    cd FeatureLoop
     ```
 
 2.  **Install dependencies:**
@@ -43,13 +43,7 @@ Follow these steps to get the project up and running:
 
     \*This command updates your database schema to the latest version defined in your Prisma schema file. It's crucial for setting up the database.\*
 
-5.  **Generate Better Auth files:**
-
-    ```bash
-    npx @better-auth/cli generate
-    ```
-
-6.  **Start the development server:**
+5.  **Start the development server:**
 
     ```bash
     pnpm run dev
@@ -69,16 +63,6 @@ Follow these steps to get the project up and running:
 
   GOOGLE_CLIENT_ID=
   GOOGLE_CLIENT_SECRET=
-  MICROSOFT_CLIENT_ID=
-  MICROSOFT_CLIENT_SECRET=
-  APPLE_CLIENT_ID=
-  APPLE_CLIENT_SECRET=
-  APPLE_APP_BUNDLE_IDENTIFIER=
-
-  S3_UPLOAD_KEY=
-  S3_UPLOAD_SECRET=
-  S3_UPLOAD_BUCKET=
-  S3_UPLOAD_REGION=
 
   SENDGRID_API_KEY=
   EMAIL_FROM=
@@ -87,21 +71,12 @@ Follow these steps to get the project up and running:
   WEB_APP_URL=http://localhost:3000
   ```
 
-  - **DATABASE_URL:** The connection string for your database. Example: `"postgresql://user:password@host:port/database"` or `"file:./dev.db"`.
+  - **DATABASE_URL:** The connection string for your database. Example: `"mongodb://user:pass@localhost:27018/featureloop?directConnection=true&retryWrites=false&authSource=admin"`.
   - **BETTER_AUTH_SECRET:** Secret key used by Better Auth for secure session management.
   - **BETTER_AUTH_URL:** The URL where Better Auth is hosted.
   - **EMAIL_VERIFICATION_CALLBACK_URL:** The URL to redirect the user after email verification.
   - **GOOGLE_CLIENT_ID:** Client ID for Google authentication.
   - **GOOGLE_CLIENT_SECRET:** Client Secret for Google authentication.
-  - **MICROSOFT_CLIENT_ID:** Client ID for Microsoft authentication.
-  - **MICROSOFT_CLIENT_SECRET:** Client Secret for Microsoft authentication.
-  - **APPLE_CLIENT_ID:** Client ID for Apple authentication.
-  - **APPLE_CLIENT_SECRET:** Client Secret for Apple authentication.
-  - **APPLE_APP_BUNDLE_IDENTIFIER:** Apple App Bundle Identifier.
-  - **S3_UPLOAD_KEY:** Key for accessing your S3 storage.
-  - **S3_UPLOAD_SECRET:** Secret for accessing your S3 storage.
-  - **S3_UPLOAD_BUCKET:** Name of your S3 bucket.
-  - **S3_UPLOAD_REGION:** Region of your S3 bucket.
   - **SENDGRID_API_KEY:** API key for SendGrid.
   - **EMAIL_FROM:** Email address used as the sender for application emails.
   - **WEB_APP_URL:** The base URL of your web application.
