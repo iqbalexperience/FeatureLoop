@@ -6,6 +6,7 @@ import {
   openAPI,
   bearer,
   admin,
+  apiKey,
 } from "better-auth/plugins";
 import {
   emailVerificationTemplate,
@@ -23,7 +24,7 @@ export const auth = betterAuth({
     bearer(),
     admin({
       adminUserIds: [],
-    }),
+    })
   ],
   // trustedOrigins: ["chrome-extension://dfgklfhblpboebbehcakgoimmagebohj"],
   advanced: {
