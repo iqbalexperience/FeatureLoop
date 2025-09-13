@@ -72,7 +72,7 @@ export default async function BoardPage() {
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <h2 className="text-lg font-semibold">No tasks yet</h2>
                 <p className="text-sm text-muted-foreground">
-                  Convert feedback to tasks or create new tasks directly.
+                  No tasks approved/created yet.
                 </p>
                 {isAuthorized && (
                   <Button asChild>

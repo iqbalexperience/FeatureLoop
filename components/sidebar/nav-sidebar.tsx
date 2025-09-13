@@ -39,16 +39,15 @@ export const navPaths = {
             icon: MessageSquareWarning,
         },
         {
-            title: "Changelog",
-            url: "/changelog",
-            icon: ClockFading,
-        },
-        {
             title: "Tasks",
             url: "/board",
             icon: KanbanIcon,
         },
-
+        {
+            title: "Changelog",
+            url: "/changelog",
+            icon: ClockFading,
+        },
     ],
     navSecondary: [
         {
