@@ -18,7 +18,7 @@ import { RedirectToSignIn, SignedIn } from "@daveyplate/better-auth-ui";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Dashboard | FeedFlow",
+  title: "Dashboard | FeatureLoop",
   description: "Overview of your feedback and tasks",
 };
 
