@@ -1,11 +1,6 @@
 import { createAuthClient } from "better-auth/react";
 import {
-  adminClient,
-  apiKeyClient,
-  multiSessionClient,
-  oneTapClient,
-  usernameClient,
-  organizationClient
+  adminClient
 } from "better-auth/client/plugins";
 import { toast } from "sonner";
 
@@ -13,9 +8,6 @@ export const authClient = createAuthClient({
   baseURL: process.env.BETTER_AUTH_URL,
   plugins: [
     adminClient(),
-    multiSessionClient(),
-    apiKeyClient(),
-    organizationClient()
   ],
   fetchOptions: {
     onError(e: any) {

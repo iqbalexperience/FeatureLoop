@@ -39,7 +39,7 @@ export const auth = betterAuth({
         }
         return randS;
       },
-    }
+    },
   },
   user: {
     deleteUser: {
@@ -57,6 +57,7 @@ export const auth = betterAuth({
       });
     },
   },
+
   emailVerification: {
     sendOnSignUp: false,
     autoSignInAfterVerification: true,

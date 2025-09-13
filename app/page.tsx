@@ -35,6 +35,25 @@ export default async function DashboardPage() {
   const isAuthorized = session?.user && ["admin", "developer"].includes(session.user.role as string);
   const isAdmin = session?.user && session.user.role === "admin";
 
+  if (!isAdmin) {
+    const isIstUser = await prisma.user.findMany({
+      select: {
+        id: true
+      },
+      take: 2
+    })
+    if (isIstUser?.length === 1) {
+      await prisma.user.update({
+        where: {
+          id: session.user.id
+        },
+        data: {
+          role: "admin"
+        }
+      })
+    }
+  }
+
   if (!isAuthorized) {
     redirect("/feedback")
   }
