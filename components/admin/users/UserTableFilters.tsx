@@ -51,7 +51,7 @@ export default function UserTableFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const form = useForm<FilterValues>({
     resolver: zodResolver(filterSchema),
     defaultValues: {
@@ -64,36 +64,36 @@ export default function UserTableFilters() {
       sortDirection: (searchParams.get("sortDirection") as "asc" | "desc") || "desc",
     },
   });
-  
+
   const applyFilters = (values: FilterValues) => {
     const params = new URLSearchParams();
-    
+
     if (values.searchValue) {
       params.set("searchValue", values.searchValue);
       params.set("searchField", values.searchField || "name");
       params.set("searchOperator", "contains");
     }
-    
+
     if (values.filterField && values.filterValue) {
       params.set("filterField", values.filterField);
       params.set("filterValue", values.filterValue);
       params.set("filterOperator", values.filterOperator || "eq");
     }
-    
+
     if (values.sortBy) {
       params.set("sortBy", values.sortBy);
       params.set("sortDirection", values.sortDirection || "desc");
     }
-    
+
     router.push(`/admin/users?${params.toString()}`);
   };
-  
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const values = form.getValues();
     applyFilters(values);
   };
-  
+
   const clearFilters = () => {
     form.reset({
       searchValue: "",
@@ -106,12 +106,12 @@ export default function UserTableFilters() {
     });
     router.push("/admin/users");
   };
-  
+
   const hasActiveFilters = () => {
     const values = form.getValues();
     return !!(values.searchValue || (values.filterField && values.filterValue));
   };
-  
+
   return (
     <div className="space-y-2">
       <div className="flex flex-wrap gap-2">
@@ -125,7 +125,7 @@ export default function UserTableFilters() {
               onChange={(e) => form.setValue("searchValue", e.target.value)}
             />
           </div>
-          
+
           <Select
             value={form.watch("searchField")}
             onValueChange={(val) => form.setValue("searchField", val)}
@@ -139,10 +139,10 @@ export default function UserTableFilters() {
               <SelectItem value="role">Role</SelectItem>
             </SelectContent>
           </Select>
-          
+
           <Button type="submit">Search</Button>
         </form>
-        
+
         <Popover open={showFilters} onOpenChange={setShowFilters}>
           <PopoverTrigger asChild>
             <Button variant="outline">
@@ -155,15 +155,15 @@ export default function UserTableFilters() {
               <div className="space-y-4">
                 <h4 className="font-medium">Filter Options</h4>
                 <Separator />
-                
+
                 <FormField
                   control={form.control}
                   name="filterField"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Filter By</FormLabel>
-                      <Select 
-                        onValueChange={field.onChange} 
+                      <Select
+                        onValueChange={field.onChange}
                         defaultValue={field.value || ""}
                       >
                         <FormControl>
@@ -181,7 +181,7 @@ export default function UserTableFilters() {
                     </FormItem>
                   )}
                 />
-                
+
                 {form.watch("filterField") && (
                   <>
                     <FormField
@@ -190,8 +190,8 @@ export default function UserTableFilters() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Operator</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
+                          <Select
+                            onValueChange={field.onChange}
                             defaultValue={field.value || "eq"}
                           >
                             <FormControl>
@@ -208,7 +208,7 @@ export default function UserTableFilters() {
                         </FormItem>
                       )}
                     />
-                    
+
                     <FormField
                       control={form.control}
                       name="filterValue"
@@ -216,8 +216,8 @@ export default function UserTableFilters() {
                         <FormItem>
                           <FormLabel>Value</FormLabel>
                           {form.watch("filterField") === "role" ? (
-                            <Select 
-                              onValueChange={field.onChange} 
+                            <Select
+                              onValueChange={field.onChange}
                               defaultValue={field.value || ""}
                             >
                               <FormControl>
@@ -228,13 +228,12 @@ export default function UserTableFilters() {
                               <SelectContent>
                                 <SelectItem value="admin">Admin</SelectItem>
                                 <SelectItem value="user">User</SelectItem>
-                                <SelectItem value="editor">Editor</SelectItem>
-                                <SelectItem value="moderator">Moderator</SelectItem>
+                                <SelectItem value="developer">Developer</SelectItem>
                               </SelectContent>
                             </Select>
                           ) : form.watch("filterField") === "banned" ? (
-                            <Select 
-                              onValueChange={field.onChange} 
+                            <Select
+                              onValueChange={field.onChange}
                               defaultValue={field.value || ""}
                             >
                               <FormControl>
@@ -257,17 +256,17 @@ export default function UserTableFilters() {
                     />
                   </>
                 )}
-                
+
                 <Separator />
-                
+
                 <FormField
                   control={form.control}
                   name="sortBy"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Sort By</FormLabel>
-                      <Select 
-                        onValueChange={field.onChange} 
+                      <Select
+                        onValueChange={field.onChange}
                         defaultValue={field.value || "createdAt"}
                       >
                         <FormControl>
@@ -285,15 +284,15 @@ export default function UserTableFilters() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="sortDirection"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Sort Direction</FormLabel>
-                      <Select 
-                        onValueChange={field.onChange as (value: string) => void} 
+                      <Select
+                        onValueChange={field.onChange as (value: string) => void}
                         defaultValue={field.value || "desc"}
                       >
                         <FormControl>
@@ -309,17 +308,17 @@ export default function UserTableFilters() {
                     </FormItem>
                   )}
                 />
-                
+
                 <div className="flex justify-between pt-2">
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     onClick={clearFilters}
                   >
                     Reset
                   </Button>
-                  <Button 
-                    type="button" 
+                  <Button
+                    type="button"
                     onClick={() => {
                       applyFilters(form.getValues());
                       setShowFilters(false);
@@ -332,11 +331,11 @@ export default function UserTableFilters() {
             </Form>
           </PopoverContent>
         </Popover>
-        
+
         {hasActiveFilters() && (
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={clearFilters}
             className="h-10"
           >
@@ -345,7 +344,7 @@ export default function UserTableFilters() {
           </Button>
         )}
       </div>
-      
+
       <div className="flex items-center text-sm text-muted-foreground">
         <div className="flex items-center gap-1">
           <span>Sort:</span>

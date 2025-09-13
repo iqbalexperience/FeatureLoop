@@ -105,8 +105,7 @@ export default function ChangeRoleModal({ user, isOpen, onClose }: ChangeRoleMod
                     <SelectContent>
                       <SelectItem value="user">User</SelectItem>
                       <SelectItem value="admin">Admin</SelectItem>
-                      <SelectItem value="editor">Editor</SelectItem>
-                      <SelectItem value="moderator">Moderator</SelectItem>
+                      <SelectItem value="developer">Developer</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
